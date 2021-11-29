@@ -1,0 +1,33 @@
+plugins {
+ id 'java'
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+ jcenter()
+}
+
+test {
+    useJUnitPlatform{
+    systemProperties = [
+        //'junit.jupiter.extensions.autodetection.enabled': 'true',
+        'junit.jupiter.testinstance.lifecycle.default': 'per_class'
+    ]
+    //excludeTags 'integration'
+    }
+}
+
+configurations {
+testCompile
+}
+ 
+dependencies {
+	testImplementation group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.7.2'
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.2'
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.7.2'
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.2'
+	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0'
+}
